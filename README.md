@@ -1,4 +1,4 @@
-#Polymer Test#
+# Polymer Test
 
 Quick test using Pollymer App Toolbox - Starter Kit for Polymer 2
 
