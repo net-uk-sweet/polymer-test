@@ -1,6 +1,6 @@
 # Polymer Test
 
-Quick test using Pollymer App Toolbox - Starter Kit for Polymer 2
+Quick test using Polymer App Toolbox - Starter Kit for Polymer 2
 
 ## Setup
 
