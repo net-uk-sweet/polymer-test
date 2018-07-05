@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="shuffle-text.html">
 
@@ -25,14 +26,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <div class="circle">1</div>
       <h1>About</h1>
-      <p>Ian Watson is a <shuffle-text content="front-end"></shuffle-text> developer with 17 years' experience</p>
+      <p>Ian Watson is a <shuffle-text content="{{input}}"></shuffle-text> developer with 17 years' experience</p>
       <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <paper-input always-float-label label="What type of developer is Ian?" value="{{input}}"></paper-input>
     </div>
   </template>
 
   <script>
     class MyAboutView extends Polymer.Element {
       static get is() { return 'my-about-view'; }
+
+      static get properties() {
+        return {
+          input: {
+            value: 'front-end',
+            type: String
+          }
+        }
+      }
     }
 
     window.customElements.define(MyAboutView.is, MyAboutView);

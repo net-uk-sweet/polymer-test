@@ -30,12 +30,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     class ShuffleText extends Polymer.Element {
 
       static get is() { return 'shuffle-text'; }
+      
       static get properties() {
         return {
             content: String
         }
       }
       
+      // Component's public API
       shuffle() {
         this.content = this._shuffleString(this.content);
       }
