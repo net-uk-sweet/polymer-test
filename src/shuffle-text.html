@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		</style>
 
 		<!-- no shadow DOM required? -->
-		[[content]]
+		[[output]]
 	</template>
 
 	<script>
@@ -36,23 +36,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 			static get properties() {
 				return {
-					content: String
+					content: {
+						type: String,
+						observer: '_contentChanged'
+					},
+					shuffled: {
+						type: Boolean,
+						observer: '_shuffledChanged'
+					},
+					shuffledContent: String		
 				}
 			}
 
 			// Component's public API
 			shuffle() {
-				this.content = this._shuffleString(this.content);
+				this.output = this._shuffleString(this.content);
+			}
+
+			unshuffle() {
+				this.output = this.content;
+			}
+
+			toggle() {
+				this.shuffled ? this.shuffle() : this.unshuffle();
 			}
 
 			// One time init lifecycle callback method
 			ready() {
 				super.ready();
-				this.addEventListener('click', this._handleClick.bind(this));
 			}
 
-			_handleClick() {
-				this.shuffle();
+			_shuffledChanged(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.toggle();
+				}
+			}	
+
+			_contentChanged(newValue, oldValue) {
+				if (newValue !== oldValue) {
+					this.toggle();
+				}
 			}
 
 			// next two would probably come from a utils lib, not private methods here

@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="shuffle-text.html">
 
@@ -27,9 +28,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <div class="circle">1</div>
       <h1>About</h1>
-      <p>Ian Watson is a <span><paper-tooltip>Click me for possibly hilarious results!</paper-tooltip><shuffle-text content="{{input}}"></shuffle-text></span> developer with 17 years' experience</p>
+      <p>Ian Watson is a 
+        <span>
+          <paper-tooltip>Click me for possibly hilarious results!</paper-tooltip>
+          <shuffle-text content="{{input}}" shuffled="{{checked}}" on-click="_handleShuffleClick"></shuffle-text>
+        </span> 
+        developer with 17 years' experience</p>
       <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
       <paper-input always-float-label label="What type of developer is Ian?" value="{{input}}"></paper-input>
+      <paper-checkbox checked="{{checked}}">Shuffle</paper-checkbox>
     </div>
   </template>
 
@@ -42,8 +49,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           input: {
             value: 'front-end',
             type: String
+          },
+          checked: {
+            value: false,
+            type: Boolean
           }
         }
+      }
+
+      _handleShuffleClick() {
+        this.checked = !this.checked;
       }
     }
 
